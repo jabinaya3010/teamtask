@@ -1,0 +1,67 @@
+<script>
+        let but=()=>{
+            let datacollection=[]
+            let username=document.getElementById("name").value
+            let usermail=document.getElementById("mail").value
+            let userpass=document.getElementById("pass").value
+            let idform=document.getElementById("loginform")
+ 
+            const datacollection1={username,usermail,userpass}
+            datacollection.push(datacollection1)
+            
+
+            localStorage.setItem("user",JSON.stringify(datacollection));
+
+            alert("registration succesfull")
+
+           console.log(localStorage.getItem("user"));
+           idform.style.display="block"
+ }
+ let otp=()=>{
+    let checkname=document.getElementById("username1")
+    let checkpass=document.getElementById("password1")
+    let otpbox=document.getElementById("otp12")
+
+
+
+    alert("log in succesfull")
+
+    otpbox.style.display="block"
+
+
+
+ }
+
+ let task=()=>{
+    let getotp=document.getElementById("otp13")
+    alert("otp accepted")
+    
+
+ }
+
+    </script>
+    
+    <h1 class="flex justify-center item center bg-blue-500 p-10 text-lg rounded-lg text-white  " >REGISTER FORM</h1>
+     <div class="flex flex-col align-center items-center">
+    <input type="text" placeholder="enter your name" class="h-10 w-90 border border-black-500 mt-4 ml-4"id="name">
+    <input type="email" placeholder="enter your email" class="h-10 w-90 border border-black-500 mt-4 ml-4" id="mail">
+    <input type="password" placeholder="enter your password" class="h-10 w-90 border border-black-500 mt-4 ml-4" id="pass">
+    <button  class="border border-black-500 w-25 h-10 bg-black text-white mt-10 " onclick="but()">register</button>
+   </div>
+        <div style="display: none;" id="loginform" id="otpsec">
+         <h1 class="bg-black h-10 text-white item-center justify-center flex mt-10 text-center">LOG IN</h1>
+        <div class="flex flex-col justify-center items-center">
+            <input type="text" placeholder="enter your username" class="h-10 w-90 border border-black-500 mt-4 ml-4" id="username1">
+            <input type="text" placeholder="enter your password" class="h-10 w-90 border border-black-500 mt-4 ml-4" id="password1">
+            <button class="border-black-500 bg-blue-500 h-10 w-15 mt-4" id="otp" onclick="otp()">submit</button>
+        </div>
+
+        </div>
+      <div class="  justify-center items-center text-center mt-10" style="display: none;" id="otp12">
+       <h1 class="bg-violet-600 h-10 flex justify-center item-center text-black ">ENTER THE OTP</h1>
+      <input type="password" class="h-10 w-90 border border-black-500 mt-4 ml-4" id="otp13" >
+     
+      <a href="task6.html">
+    <button onclick="task()">submit</button>
+</a>
+      </div>

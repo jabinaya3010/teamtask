@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+</head>
+<body>
+
+    <div>
+        <input type="text" id="clickButton" placeholder="Enter value">
+        <button onclick="emptyValue()">Click</button>
+        <h1 id="abi"></h1>
+    </div>
+
+    <div>
+        <input type="text" id="userName" placeholder="Enter Username">
+        <input type="password" id="userPassword" placeholder="Enter Password">
+        <button onclick="verifyUser()">Login</button>
+        <h4 id="result"></h4>
+    </div>
+     <div>
+           <div>
+            <button onclick="hideShow()">Hide</button>
+           <button onclick="showText()">Show</button>
+        </div>
+       
+        <div>
+            <p id="box" style="display: block;">A mango is an edible stone fruit produced by the tropical tree Mangifera indica. It originated in the northeastern part of the Indian subcontinent, in what is now Bangladesh, northeastern India and Myanmar. M. indica has been cultivated in South and Southeast Asia since ancient times, resulting in two modern mango cultivar lineages: the "Indian" and the "Southeast Asian" types. Other species in the genus Mangifera also produce edible fruits called "mangoes," most of which are found in the Malesian ecoregion.</p>
+        </div>
+    </div>
+    <div>
+        <h1 id="heading">Welcome to JavaScript</h1>
+
+    <button onclick="changeTheme()">Change Theme</button>
+    </div>
+    <div>
+         <input type="text" id="name" placeholder="Enter Name"><br><br>
+
+    <input type="email" id="email" placeholder="Enter Email"><br><br>
+
+    <input type="number" id="age" placeholder="Enter Age"><br><br>
+
+    <button onclick="registerUser()">Register</button>
+
+    <div class="card" id="card"></div>
+    </div>
+
+    <a href="task2.html">
+        <button>Bonus Task</button>
+    </a>
+   
+
+    <script>
+        
+        function emptyValue() {
+            const clickButtons = document.getElementById("clickButton").value;
+            document.getElementById("abi").innerText = `Welcome, ${clickButtons}`;
+        }
+
+        function verifyUser() {
+            const user = document.getElementById("userName").value;
+            const pass = document.getElementById("userPassword").value;
+
+            if (user === "admin" && pass === "12345") {
+                document.getElementById("result").innerText = "Login Successfully";
+            } else {
+                document.getElementById("result").innerText = "Invalid Username or Password";
+            }
+        }
+          const clickValue=document.getElementById("box")
+           const hideShow=()=>{
+                clickValue.style.display = "none";
+               
+            }
+            function showText() {
+                clickValue.style.display = "block";
+               
+            }
+             function changeTheme() {
+            document.getElementById("heading").style.color = "white";
+            document.body.style.backgroundColor = "black";
+        }
+         function registerUser(){
+
+            const name=document.getElementById("name").value;
+            const email=document.getElementById("email").value;
+            const age=document.getElementById("age").value;
+
+            document.getElementById("card").innerHTML=
+            `
+            <h3>Registration Details</h3>
+            <p><b>Name :</b> ${name}</p>
+            <p><b>Email :</b> ${email}</p>
+            <p><b>Age :</b> ${age}</p>
+            `;
+        }
+    
+
+function score(mark){
+if(mark >= 90 && mark <= 100){
+console.log("Grade A");
+}
+else if(mark >= 80){
+    console.log("Grade B");
+}
+else if(mark >= 70){
+    console.log("Grade C");
+}
+else if(mark >= 60){
+    console.log("Grade D");
+}
+else{
+    console.log("Fail");
+}
+}
+score(90)
+
+
+function number(num){
+
+if(num % 2 === 0){
+    console.log("Even");
+}
+else{
+    console.log("Odd");
+}
+}
+number(20)
+
+
+function array(...marks){
+let total = 0;
+
+for(let i=0;i<marks.length;i++){
+    total += marks[i];
+}
+
+let average = total / marks.length;
+
+console.log("Total Marks:", total);
+console.log("Average:", average);
+}
+array(100,200,50,250)
+
+
+
+function Highest_Collection(...collections){
+
+let highest = collections[0];
+let index = 0;
+
+for(let i=1;i<collections.length;i++){
+
+    if(collections[i] > highest){
+        highest = collections[i];
+        index = i;
+    }
+
+}
+console.log("Highest Collection:", highest);
+console.log("Movie Index:", index);
+}
+Highest_Collection(100,250,400,300,250,500,800,340)
+
+
+
+let users = [
+    {
+        name:"Bala",
+        email:"bala@gmail.com",
+        password:"1234"
+    },
+    {
+        name:"Mugund",
+        email:"mugund@gmail.com",
+        password:"5678"
+    }
+];
+
+
+let email = "bala@gmail.com";
+let password = "1234";
+
+
+let login = users.find(user =>
+    user.email === email &&
+    user.password === password
+);
+
+
+if(login){
+    console.log("Login Successful");
+}
+else{
+    console.log("Invalid Login");
+}
+
+
+
+</script>
+
+</body>
+</html>

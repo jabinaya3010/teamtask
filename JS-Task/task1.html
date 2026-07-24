@@ -1,67 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login with OTP</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+<!-- Register -->
+<div id="registerPage">
+
+    <h1 class="bg-blue-600 text-white text-center p-4 text-2xl font-bold">
+        REGISTER
+    </h1>
+
+    <div class="flex flex-col items-center mt-10">
+
+        <input
+            type="tel"
+            id="regNumber"
+            maxlength="10"
+            placeholder="Enter Mobile Number"
+            class="border w-80 h-10 p-2 rounded mb-4">
+
+        <input
+            type="password"
+            id="regPassword"
+            placeholder="Enter Password"
+            class="border w-80 h-10 p-2 rounded mb-4">
+
+        <button
+            onclick="register()"
+            class="bg-green-600 text-white px-6 py-2 rounded">
+            Register
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Login -->
+<div id="loginPage" class="hidden">
+
+    <h1 class="bg-blue-700 text-white text-center p-4 text-2xl font-bold">
+        LOGIN
+    </h1>
+
+    <div class="flex flex-col items-center mt-10">
+
+        <input
+            type="tel"
+            id="loginNumber"
+            maxlength="10"
+            placeholder="Enter Mobile Number"
+            class="border w-80 h-10 p-2 rounded mb-4">
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter Password"
+            class="border w-80 h-10 p-2 rounded mb-4">
+
+        <button
+            onclick="login()"
+            class="bg-blue-600 text-white px-6 py-2 rounded">
+            Login
+        </button>
+
+    </div>
+
+</div>
+
+<!-- OTP -->
+<div id="otpPage" class="hidden">
+
+    <h1 class="bg-purple-600 text-white text-center p-4 text-2xl font-bold">
+        OTP VERIFICATION
+    </h1>
+
+    <div class="flex flex-col items-center mt-10">
+
+        <p class="mb-3 text-green-700 font-bold">
+            Demo OTP : 1234
+        </p>
+
+        <input
+            type="text"
+            id="otp"
+            maxlength="4"
+            placeholder="Enter OTP"
+            class="border w-80 h-10 p-2 rounded mb-4">
+
+        <button
+            onclick="verifyOTP()"
+            class="bg-purple-600 text-white px-6 py-2 rounded">
+            Verify OTP
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Landing -->
+<div id="landingPage" class="hidden">
+
+    <h1 class="bg-green-600 text-white text-center p-5 text-3xl font-bold">
+        Welcome
+    </h1>
+
+    <div class="text-center mt-10">
+
+        <h2 class="text-3xl font-bold">
+            🎉 Login Successful
+        </h2>
+
+        <p class="mt-4 text-lg">
+            Welcome to the Landing Page.
+        </p>
+
+    </div>
+
+</div>
+
 <script>
-        let but=()=>{
-            let datacollection=[]
-            let username=document.getElementById("name").value
-            let usermail=document.getElementById("mail").value
-            let userpass=document.getElementById("pass").value
-            let idform=document.getElementById("loginform")
- 
-            const datacollection1={username,usermail,userpass}
-            datacollection.push(datacollection1)
-            
 
-            localStorage.setItem("user",JSON.stringify(datacollection));
+function register(){
 
-            alert("registration succesfull")
+    let number=document.getElementById("loginNumber").value;
+    let password=document.getElementById("loginPassword").value;
 
-           console.log(localStorage.getItem("user"));
-           idform.style.display="block"
- }
- let otp=()=>{
-    let checkname=document.getElementById("username1")
-    let checkpass=document.getElementById("password1")
-    let otpbox=document.getElementById("otp12")
+    if(number==="" || password===""){
+        alert("Please fill all fields");
+        return;
+    }
 
+    let user={
+        number:number,
+        password:password,
+        otp:"1234"
+    };
 
+    localStorage.setItem("user",JSON.stringify(user));
 
-    alert("log in succesfull")
+    alert("Registration Successful");
 
-    otpbox.style.display="block"
+    document.getElementById("registerPage").classList.add("hidden");
+    document.getElementById("loginPage").classList.remove("hidden");
 
+}
 
+function login(){
 
- }
+    let number=document.getElementById("loginNumber").value;
+    let password=document.getElementById("loginPassword").value;
 
- let task=()=>{
-    let getotp=document.getElementById("otp13")
-    alert("otp accepted")
-    
+    let user=JSON.parse(localStorage.getItem("user"));
 
- }
+    if(user==null){
+        alert("Please Register First");
+        return;
+    }
 
-    </script>
-    
-    <h1 class="flex justify-center item center bg-blue-500 p-10 text-lg rounded-lg text-white  " >REGISTER FORM</h1>
-     <div class="flex flex-col align-center items-center">
-    <input type="text" placeholder="enter your name" class="h-10 w-90 border border-black-500 mt-4 ml-4"id="name">
-    <input type="email" placeholder="enter your email" class="h-10 w-90 border border-black-500 mt-4 ml-4" id="mail">
-    <input type="password" placeholder="enter your password" class="h-10 w-90 border border-black-500 mt-4 ml-4" id="pass">
-    <button  class="border border-black-500 w-25 h-10 bg-black text-white mt-10 " onclick="but()">register</button>
-   </div>
-        <div style="display: none;" id="loginform" id="otpsec">
-         <h1 class="bg-black h-10 text-white item-center justify-center flex mt-10 text-center">LOG IN</h1>
-        <div class="flex flex-col justify-center items-center">
-            <input type="text" placeholder="enter your username" class="h-10 w-90 border border-black-500 mt-4 ml-4" id="username1">
-            <input type="text" placeholder="enter your password" class="h-10 w-90 border border-black-500 mt-4 ml-4" id="password1">
-            <button class="border-black-500 bg-blue-500 h-10 w-15 mt-4" id="otp" onclick="otp()">submit</button>
-        </div>
+    if(number===user.number && password===user.password){
 
-        </div>
-      <div class="  justify-center items-center text-center mt-10" style="display: none;" id="otp12">
-       <h1 class="bg-violet-600 h-10 flex justify-center item-center text-black ">ENTER THE OTP</h1>
-      <input type="password" class="h-10 w-90 border border-black-500 mt-4 ml-4" id="otp13" >
-     
-      <a href="task6.html">
-    <button onclick="task()">submit</button>
-</a>
-      </div>
+        alert("Login Successful");
+
+        document.getElementById("loginPage").classList.add("hidden");
+        document.getElementById("otpPage").classList.remove("hidden");
+
+    }
+    else{
+
+        alert("Invalid Mobile Number or Password");
+
+    }
+
+}
+
+function verifyOTP(){
+
+    let otp=document.getElementById("otp").value;
+
+    let user=JSON.parse(localStorage.getItem("user"));
+
+    if(otp===user.otp){
+
+        alert("OTP Verified Successfully");
+
+        document.getElementById("otpPage").classList.add("hidden");
+        document.getElementById("landingPage").classList.remove("hidden");
+
+    }
+    else{
+
+        alert("Invalid OTP");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
